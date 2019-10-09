@@ -1,0 +1,49 @@
+from flask import Flask, render_template
+from flask_socketio import SocketIO, send, emit
+from flask_cors import CORS
+
+app = Flask(__name__)
+cors = CORS(app)
+app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy   dog'
+app.config['CORS_HEADERS'] = 'Content-Type'
+socketio = SocketIO(app)
+socketio.run(app)
+
+@app.route('/')
+def index():
+    return '<p>howdy fellas</p>'
+
+# if __name__ == '__main__':
+
+#Receive messeage
+# @socketio.on('message')
+# def handle_message(message):
+#     print('received message: ' + message)
+
+# @socketio.on('json')
+# @cross_origin(origin='localhost',headers=['Content- Type','Authorization', 'Access-Control-Allow-Origin'])
+# def handle_json(json):
+#     print('received json: ' + str(json))
+
+# #Send/emit messages
+# @socketio.on('message')
+# def handle_message(message):
+#     send(message)
+
+# #Routers
+
+
+# @app.route('/<name>')
+# def indexName(name):
+#     return '<h1>Hello {}</h1>'.format(name)
+
+# #server events
+# @socketio.on('connect')
+# @cross_origin(origin='localhost',headers=['Content- Type','Authorization', 'Access-Control-Allow-Origin'])
+# def test_connect():
+#     emit('my response', {'data': 'Connected'})
+
+# @socketio.on('disconnect')
+# @cross_origin(origin='localhost',headers=['Content- Type','Authorization', 'Access-Control-Allow-Origin'])
+# def test_disconnect():
+#     print('Client disconnected')
